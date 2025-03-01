@@ -1,4 +1,4 @@
-
+//gibutngan nako comments para if mag explain natang sir
 package com.example.baseconvert
 
 import android.os.Bundle
@@ -41,7 +41,7 @@ fun BaseConverterScreen(onBackClick: () -> Unit) {
     var result by remember { mutableStateOf("") }
     var errorMessage by remember { mutableStateOf("") }
 
-    // Conversion options
+    // Conversion options yessir
     val conversions = listOf(
         "Decimal to Octal",
         "Decimal to Hexadecimal",
@@ -114,7 +114,7 @@ fun BaseConverterScreen(onBackClick: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Input and Conversion Selection Card
+            // Input and Conversion Selection 
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(12.dp),
