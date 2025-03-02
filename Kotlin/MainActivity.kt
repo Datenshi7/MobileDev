@@ -155,7 +155,7 @@ class MainActivity : ComponentActivity() {
                             placeholder = { Text("Enter username") },
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color(0xFF90EE90),
+                                unfocusedContainerColor = Color.LightGray,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
                                 unfocusedBorderColor = Color(0xFF90EE90)
@@ -206,7 +206,7 @@ class MainActivity : ComponentActivity() {
                             visualTransformation = PasswordVisualTransformation(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color(0xFF90EE90),
+                                unfocusedContainerColor = Color.LightGray,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
                                 unfocusedBorderColor = Color(0xFF90EE90)
