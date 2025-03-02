@@ -75,8 +75,9 @@ class RegisterActivity : ComponentActivity() {
                 .background(Color.White),
             contentAlignment = Alignment.Center
         ) {
+
             // App title at the top
-            Text(
+            /*Text(
                 text = "Base Converter",
                 modifier = Modifier
                     .align(Alignment.TopCenter)
@@ -84,7 +85,7 @@ class RegisterActivity : ComponentActivity() {
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF2E8B57) // Sea Green
-            )
+            )*/
 
             // Registration card
             Card(
@@ -145,8 +146,8 @@ class RegisterActivity : ComponentActivity() {
                                 .height(56.dp),
                             placeholder = { Text("Enter username") },
                             colors = OutlinedTextFieldDefaults.colors(
-                                focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color(0xFF90EE90),
+                                focusedContainerColor = Color.LightGray,
+                                unfocusedContainerColor = Color.LightGray,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
                                 unfocusedBorderColor = Color(0xFF90EE90)
@@ -196,7 +197,7 @@ class RegisterActivity : ComponentActivity() {
                             placeholder = { Text("Enter email address") },
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color(0xFF90EE90),
+                                unfocusedContainerColor = Color.LightGray,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
                                 unfocusedBorderColor = Color(0xFF90EE90)
@@ -248,7 +249,7 @@ class RegisterActivity : ComponentActivity() {
                             visualTransformation = PasswordVisualTransformation(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color(0xFF90EE90),
+                                unfocusedContainerColor = Color.LightGray,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
                                 unfocusedBorderColor = Color(0xFF90EE90)
@@ -299,7 +300,7 @@ class RegisterActivity : ComponentActivity() {
                             visualTransformation = PasswordVisualTransformation(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color(0xFF90EE90),
+                                unfocusedContainerColor = Color.LightGray,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
                                 unfocusedBorderColor = Color(0xFF90EE90)
