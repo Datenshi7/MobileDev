@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF90EE90)), // Light Green
+                .background(Color.White), // Light Green
             contentAlignment = Alignment.Center
         ) {
             // App title at the top
@@ -152,6 +152,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
+                            placeholder = { Text("Enter username") },
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
                                 unfocusedContainerColor = Color(0xFF90EE90),
@@ -201,6 +202,7 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
+                            placeholder = { Text("Enter password") },
                             visualTransformation = PasswordVisualTransformation(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
@@ -280,7 +282,7 @@ class MainActivity : ComponentActivity() {
                             text = "SIGN IN",
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF98FB98) // Pale Green
+                            color = Color.White
                         )
                     }
 
