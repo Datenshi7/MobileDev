@@ -35,6 +35,7 @@ val LightMint = Color(0xFF90EE90)
 val MediumSeaGreen = Color(0xFF3CB371)
 val DarkSeaGreen = Color(0xFF2E8B57)
 val LightSalmon = Color(0xFFFFA07A)
+val DarkGreen = Color(0xFF0B5345)
 
 class LandingPageActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,7 +108,7 @@ fun LandingPage(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(MediumSeaGreen)
+                    .background(DarkGreen)
                     .padding(vertical = 16.dp, horizontal = 24.dp)
             ) {
                 Row(
@@ -136,7 +137,7 @@ fun LandingPage(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(LightMint.copy(alpha = 0.1f)),
+                .background(DarkSeaGreen.copy(alpha = 0.2f)),
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -146,7 +147,7 @@ fun LandingPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(MintGreen.copy(alpha = 0.3f))
+                        .background(DarkSeaGreen.copy(alpha = 0.2f))
                         .padding(20.dp)
                 ) {
                     Column(
