@@ -10,8 +10,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -20,8 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,7 +33,7 @@ class ProfileActivity : ComponentActivity() {
             BaseConvertTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color(0xFF58d68d)
                 ) {
                     ProfileScreen(
                         onLogoutConfirmed = { navigateToLoginScreen() },
@@ -61,7 +60,6 @@ class ProfileActivity : ComponentActivity() {
 fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
     var username by remember { mutableStateOf("john_doe") }
     var email by remember { mutableStateOf("john_doe@example.com") }
-    var password by remember { mutableStateOf("") }
     var isEditing by remember { mutableStateOf(false) }
     var showLogoutDialog by remember { mutableStateOf(false) }
 
@@ -93,111 +91,89 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(16.dp)
     ) {
-        Text(text = "Profile", style = MaterialTheme.typography.headlineSmall)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = username,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
+            Icon(
+                imageVector = Icons.Default.Settings,
+                contentDescription = "Settings",
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable { onSettingsClick() }
+            )
+        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_cat), // Replace with your drawable resource
-            contentDescription = "Profile Picture",
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_cat), // Replace with your drawable resource
+                contentDescription = "Profile Picture",
+                modifier = Modifier
+                    .size(100.dp)
+                    .clip(CircleShape)
+                    .background(Color.Gray),
+                contentScale = ContentScale.Crop
+            )
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            Text(
+                text = email,
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = { isEditing = true },
             modifier = Modifier
-                .size(100.dp)
-                .clip(CircleShape)
-                .background(Color.Gray),
-            contentScale = ContentScale.Crop
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        if (isEditing) {
-            BasicTextField(
-                value = username,
-                onValueChange = { username = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(Color.LightGray)
-                    .padding(12.dp),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                singleLine = true
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            BasicTextField(
-                value = email,
-                onValueChange = { email = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(Color.LightGray)
-                    .padding(12.dp),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                singleLine = true
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            BasicTextField(
-                value = password,
-                onValueChange = { password = it },
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(8.dp))
-                    .background(Color.LightGray)
-                    .padding(12.dp),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                singleLine = true
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Button(
-                onClick = { isEditing = false },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
-            ) {
-                Text(text = "Save", fontSize = 18.sp, color = MaterialTheme.colorScheme.onPrimary)
-            }
-        } else {
-            Text(text = "Username: $username", style = MaterialTheme.typography.bodyLarge)
-            Text(text = "Email: $email", style = MaterialTheme.typography.bodyLarge)
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            //get rid of this, instead, put the pencil icon to indicate edit
-            Button(
-                onClick = { isEditing = true },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0B5345))
-            ) {
-                Text(text = "Edit Profile", fontSize = 18.sp, color = MaterialTheme.colorScheme.onPrimary)
-            }
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp)),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0B5345))
+        ) {
+            Text(text = "Edit Profile", fontSize = 18.sp, color = MaterialTheme.colorScheme.onPrimary)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        //can log out be in the settings icon?
-        Button(
-            onClick = { showLogoutDialog = true },
-            modifier = Modifier.fillMaxWidth()
+        // Rounded corner boxes for 'Notes' and 'History'
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(Color.LightGray)
+                .clickable { /* Handle Notes click */ },
+            contentAlignment = Alignment.Center
         ) {
-            Text(text = "Logout")
+            Text(text = "Notes", style = MaterialTheme.typography.bodyLarge)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        //so to say, this should be an icon, I'll think of other things to put inside the profile
-        Button(
-            onClick = onSettingsClick,
-            modifier = Modifier.fillMaxWidth()
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .background(Color.LightGray)
+                .clickable { /* Handle History click */ },
+            contentAlignment = Alignment.Center
         ) {
-            Text(text = "Settings")
+            Text(text = "History", style = MaterialTheme.typography.bodyLarge)
         }
     }
 }
