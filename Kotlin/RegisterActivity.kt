@@ -72,7 +72,7 @@ class RegisterActivity : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFF90EE90)), // Light Green
+                .background(Color.White),
             contentAlignment = Alignment.Center
         ) {
             // App title at the top
@@ -80,7 +80,7 @@ class RegisterActivity : ComponentActivity() {
                 text = "Base Converter",
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 48.dp),
+                    .padding(top = 40.dp),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF2E8B57) // Sea Green
@@ -143,7 +143,7 @@ class RegisterActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
-                            placeholder = { Text("Choose a username") },
+                            placeholder = { Text("Enter username") },
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
                                 unfocusedContainerColor = Color(0xFF90EE90),
@@ -193,7 +193,7 @@ class RegisterActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
-                            placeholder = { Text("Enter your email address") },
+                            placeholder = { Text("Enter email address") },
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
                                 unfocusedContainerColor = Color(0xFF90EE90),
@@ -244,7 +244,7 @@ class RegisterActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(56.dp),
-                            placeholder = { Text("Create a password (min 6 characters)") },
+                            placeholder = { Text("Create a password") },
                             visualTransformation = PasswordVisualTransformation(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
@@ -361,7 +361,7 @@ class RegisterActivity : ComponentActivity() {
                             text = "CREATE ACCOUNT",
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF98FB98) // Pale Green
+                            color = Color.White
                         )
                     }
 
