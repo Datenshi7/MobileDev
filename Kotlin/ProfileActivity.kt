@@ -91,6 +91,7 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFF0B5345).copy(alpha = 0.2f))
             .padding(16.dp)
     ) {
         Row(
@@ -118,7 +119,7 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_cat), // Replace with your drawable resource
+                painter = painterResource(id = R.drawable.x1), // Replace with your drawable resource
                 contentDescription = "Profile Picture",
                 modifier = Modifier
                     .size(100.dp)
@@ -155,7 +156,7 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
                 .fillMaxWidth()
                 .height(80.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color.LightGray)
+                .background(Color(0xFF0B5345).copy(alpha = 0.2f))
                 .clickable { /* Handle Notes click */ },
             contentAlignment = Alignment.Center
         ) {
@@ -169,7 +170,7 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
                 .fillMaxWidth()
                 .height(80.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color.LightGray)
+                .background(Color(0xFF0B5345).copy(alpha = 0.2f))
                 .clickable { /* Handle History click */ },
             contentAlignment = Alignment.Center
         ) {
