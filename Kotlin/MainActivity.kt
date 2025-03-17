@@ -85,6 +85,7 @@ class MainActivity : ComponentActivity() {
                 .background(Color.White), // Light Green
             contentAlignment = Alignment.Center
         ) {
+
             // App title at the top
             Text(
                 text = "Base Converter",
