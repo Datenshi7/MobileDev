@@ -1,4 +1,4 @@
-package com.example.baseconverter
+package com.example.baseconvert
 
 import android.content.ContentValues
 import android.content.Context
@@ -34,7 +34,6 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-     
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
         db.execSQL("DROP INDEX IF EXISTS idx_username")
         db.execSQL("DROP INDEX IF EXISTS idx_email")
@@ -69,7 +68,7 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
 
     fun loginUser(username: String, password: String): Boolean {
         val db = readableDatabase
-        var cursor: android.database.Cursor? = null 
+        var cursor: android.database.Cursor? = null
         try {
             cursor = db.rawQuery(
                 "SELECT $COLUMN_PASSWORD_HASH FROM $TABLE_USERS WHERE $COLUMN_USERNAME = ?",
@@ -82,11 +81,12 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
             }
             return false
         } finally {
-            cursor?.close() 
+            cursor?.close()
             db.close()
         }
     }
 
+    // Check if username or email already exists
     fun userExists(username: String, email: String): Pair<Boolean, Boolean> {
         val db = readableDatabase
         var usernameCursor: android.database.Cursor? = null
@@ -95,6 +95,7 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
             var usernameExists = false
             var emailExists = false
 
+            // Check username with index for performance
             usernameCursor = db.rawQuery(
                 "SELECT COUNT(*) FROM $TABLE_USERS WHERE $COLUMN_USERNAME = ?",
                 arrayOf(username)
@@ -103,7 +104,7 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
                 usernameExists = usernameCursor.getInt(0) > 0
             }
 
-            
+            // Check email with index for performance
             emailCursor = db.rawQuery(
                 "SELECT COUNT(*) FROM $TABLE_USERS WHERE $COLUMN_EMAIL = ?",
                 arrayOf(email)
@@ -114,8 +115,8 @@ class DatabaseManager(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
 
             return Pair(usernameExists, emailExists)
         } finally {
-            usernameCursor?.close() 
-            emailCursor?.close() 
+            usernameCursor?.close() // Safely close username cursor
+            emailCursor?.close() // Safely close email cursor
             db.close()
         }
     }
