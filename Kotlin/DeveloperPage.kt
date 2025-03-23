@@ -21,20 +21,24 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.baseconvert.ui.theme.BaseConvertTheme
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withStyle
+
 
 class DeveloperActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BaseConvertTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color(0xFF58d68d),
                 ) {
                     DeveloperScreen()
                 }
-            }
+
         }
     }
 }
@@ -44,7 +48,7 @@ fun DeveloperScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(color = Color(0xFFFFF5E4)),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -52,7 +56,7 @@ fun DeveloperScreen() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFF0B5345))
+                .background(Color(0xFFEE6983))
                 .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
@@ -89,7 +93,7 @@ fun DeveloperScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFF0B5345)),
+                .background(Color(0xFFEE6983)),
             contentAlignment = Alignment.Center
         ) {
             Column(
@@ -115,9 +119,10 @@ fun DeveloperScreen() {
 
         Text(
             text = "Our team is dedicated to building innovative and user-friendly solutions that make a difference in people's lives. We believe in continuous learning, collaboration, and striving for excellence in everything we do.",
-            style = MaterialTheme.typography.bodyLarge, color = Color(0xFF0B5345),
+            style = MaterialTheme.typography.bodyLarge, color = Color.DarkGray,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 16.dp)
+                .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
         )
     }
 }
@@ -129,7 +134,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
             .fillMaxWidth()
             .padding(10.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color(0xFF98FB98).copy(alpha = 0.2f))
+            .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -142,7 +147,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
                 modifier = Modifier
                     .size(100.dp)
                     .clip(CircleShape)
-                    .background(Color.Gray),
+                    .background(color = Color(0xFFFFC4C4)),
                 contentScale = ContentScale.Crop
             )
 
@@ -151,7 +156,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
             Text(
                 text = name,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-                color = Color(0xFF0B5345)
+                color = Color(0xFF850E35)
             )
         }
 
@@ -163,13 +168,18 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
             Text(
                 text = bio,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF0B5345)
+                color = Color.DarkGray
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Fun Fact: $funFact",
+                text = buildAnnotatedString {
+                    append("Fun Fact: ")
+                    withStyle(style = SpanStyle(fontStyle = FontStyle.Italic)) {
+                        append(funFact)
+                    }
+                },
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color(0xFF0B5345)
+                color = Color.DarkGray
             )
         }
     }
@@ -178,7 +188,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
 @Preview(showBackground = true)
 @Composable
 fun DeveloperScreenPreview() {
-    BaseConvertTheme {
+
         DeveloperScreen()
-    }
+
 }
