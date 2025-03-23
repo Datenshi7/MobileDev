@@ -26,22 +26,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import com.example.baseconvert.ui.theme.BaseConvertTheme
 import java.util.*
 
 // Custom colors (unchanged)
 val MintGreen = Color(0xFF98FB98)
-val LightMint = Color(0xFF90EE90)
-val MediumSeaGreen = Color(0xFF3CB371)
-val DarkSeaGreen = Color(0xFF2E8B57)
+val LightPink = Color(0xFFFFC4C4)
+val Pink = Color(0xFFEE6983)
+val Maroon = Color(0xFF850E35)
 val LightSalmon = Color(0xFFFFA07A)
-val DarkGreen = Color(0xFF0B5345)
+val LightYellow = Color(0xFFFFF5E4)
 
 class LandingPageActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BaseConvertTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -54,7 +53,7 @@ class LandingPageActivity : ComponentActivity() {
                         onBaseConvertClick = { navigateToBaseConverter() }
                     )
                 }
-            }
+
         }
     }
 
@@ -94,7 +93,7 @@ fun LandingPage(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = { showConversionDialog = true },
-                containerColor = MediumSeaGreen,
+                containerColor = Pink,
                 contentColor = Color.White,
                 shape = CircleShape,
                 modifier = Modifier
@@ -108,7 +107,7 @@ fun LandingPage(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(DarkGreen)
+                    .background(Pink)
                     .padding(vertical = 16.dp, horizontal = 24.dp)
             ) {
                 Row(
@@ -137,7 +136,7 @@ fun LandingPage(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(DarkSeaGreen.copy(alpha = 0.2f)),
+                .background(LightYellow),
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -147,7 +146,7 @@ fun LandingPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(DarkSeaGreen.copy(alpha = 0.2f))
+                        .background(LightPink.copy(alpha = 0.4f))
                         .padding(20.dp)
                 ) {
                     Column(
@@ -157,13 +156,13 @@ fun LandingPage(
                             text = "BaseConvert",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
-                            color = DarkSeaGreen,
+                            color = Maroon,
                             textAlign = TextAlign.Center
                         )
                         Text(
                             text = "Simplify your number conversions",
                             fontSize = 16.sp,
-                            color = MediumSeaGreen,
+                            color = Color.DarkGray,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.padding(top = 8.dp)
                         )
@@ -180,14 +179,14 @@ fun LandingPage(
                     ActionCard(
                         title = "Recent",
                         subtitle = "View history",
-                        color = DarkSeaGreen.copy(alpha = 0.2f),
+                        color = LightPink.copy(alpha = 0.4f),
                         onClick = { /* Navigate to history */ },
                         modifier = Modifier.weight(1f)
                     )
                     ActionCard(
                         title = "Profile",
                         subtitle = "Your stats",
-                        color = DarkSeaGreen.copy(alpha = 0.2f),
+                        color = LightPink.copy(alpha = 0.4f),
                         onClick = onProfileClick,
                         modifier = Modifier.weight(1f)
                     )
@@ -200,8 +199,8 @@ fun LandingPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(Color.White)
-                        .shadow(2.dp, RoundedCornerShape(12.dp))
+                        .background(LightPink.copy(alpha = 0.4f))
+                        //.shadow(2.dp, RoundedCornerShape(12.dp))
                         .padding(16.dp)
                 ) {
                     Column {
@@ -209,7 +208,7 @@ fun LandingPage(
                             text = "Features",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            color = DarkSeaGreen,
+                            color = Color.DarkGray,
                             modifier = Modifier.padding(bottom = 8.dp)
                         )
                         FeatureItem("Instant Conversions", "Real-time base conversion")
@@ -225,8 +224,8 @@ fun LandingPage(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(12.dp))
-                        .background(Color.White)
-                        .shadow(2.dp, RoundedCornerShape(12.dp))
+                        .background(LightPink.copy(alpha = 0.4f))
+                        //.shadow(2.dp, RoundedCornerShape(12.dp))
                         .padding(16.dp)
                 ) {
                     Column(
@@ -236,12 +235,12 @@ fun LandingPage(
                             text = "Loved by Users",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            color = DarkSeaGreen
+                            color = Color.DarkGray
                         )
                         Text(
                             text = "\"Fastest converter I've used!\"",
                             fontSize = 16.sp,
-                            color = MediumSeaGreen,
+                            color = Color.DarkGray,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.padding(top = 8.dp)
                         )
@@ -287,12 +286,12 @@ fun ConversionOptionsDialog(
                     text = "New Conversion",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = DarkSeaGreen
+                    color = Color.DarkGray
                 )
                 Button(
                     onClick = onBaseConvertClick,
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MediumSeaGreen,
+                        containerColor = LightPink,
                         contentColor = Color.White
                     ),
                     shape = RoundedCornerShape(12.dp),
@@ -309,7 +308,7 @@ fun ConversionOptionsDialog(
                 ) {
                     Text(
                         text = "Cancel",
-                        color = MediumSeaGreen,
+                        color = Pink,
                         fontSize = 16.sp
                     )
                 }
@@ -339,12 +338,12 @@ fun ActionCard(
                 text = title,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
-                color = DarkSeaGreen
+                color = Color.DarkGray
             )
             Text(
                 text = subtitle,
                 fontSize = 14.sp,
-                color = MediumSeaGreen
+                color = Color.DarkGray
             )
         }
     }
@@ -361,7 +360,7 @@ fun FeatureItem(title: String, description: String) {
         Box(
             modifier = Modifier
                 .size(8.dp)
-                .background(MediumSeaGreen, CircleShape)
+                .background(Maroon, CircleShape)
         )
         Column(
             modifier = Modifier.padding(start = 12.dp)
@@ -370,12 +369,12 @@ fun FeatureItem(title: String, description: String) {
                 text = title,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
-                color = DarkSeaGreen
+                color = Color.DarkGray
             )
             Text(
                 text = description,
                 fontSize = 14.sp,
-                color = MediumSeaGreen
+                color = Color.DarkGray
             )
         }
     }
@@ -384,7 +383,7 @@ fun FeatureItem(title: String, description: String) {
 @Preview(showBackground = true)
 @Composable
 fun LandingPagePreview() {
-    BaseConvertTheme {
+
         LandingPage(username = "User", {}, {}, {})
-    }
+
 }
