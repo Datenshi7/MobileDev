@@ -33,7 +33,7 @@ class ProfileActivity : ComponentActivity() {
             BaseConvertTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color(0xFF58d68d)
+                    color = Color(0xFFFFC4C4)
                 ) {
                     ProfileScreen(
                         onLogoutConfirmed = { navigateToLoginScreen() },
@@ -91,7 +91,7 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF0B5345).copy(alpha = 0.2f))
+            .background(Color(0xFFFFF5E4))
             .padding(16.dp)
     ) {
         Row(
@@ -102,7 +102,8 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
             Text(
                 text = username,
                 style = MaterialTheme.typography.bodyLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFF850E35)
             )
             Icon(
                 imageVector = Icons.Default.Settings,
@@ -132,7 +133,9 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
 
             Text(
                 text = email,
-                style = MaterialTheme.typography.bodyLarge
+                style = MaterialTheme.typography.bodyLarge,
+                color = Color(0xFF850E35)
+
             )
         }
 
@@ -143,7 +146,7 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp)),
-            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0B5345))
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEE6983))
         ) {
             Text(text = "Edit Profile", fontSize = 18.sp, color = MaterialTheme.colorScheme.onPrimary)
         }
@@ -156,11 +159,11 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
                 .fillMaxWidth()
                 .height(80.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFF0B5345).copy(alpha = 0.2f))
+                .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
                 .clickable { /* Handle Notes click */ },
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "Notes", style = MaterialTheme.typography.bodyLarge)
+            Text(text = "Notes", style = MaterialTheme.typography.bodyLarge, color = Color.DarkGray)
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -170,11 +173,11 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
                 .fillMaxWidth()
                 .height(80.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFF0B5345).copy(alpha = 0.2f))
+                .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
                 .clickable { /* Handle History click */ },
             contentAlignment = Alignment.Center
         ) {
-            Text(text = "History", style = MaterialTheme.typography.bodyLarge)
+            Text(text = "History", style = MaterialTheme.typography.bodyLarge, color = Color.DarkGray)
         }
     }
 }
