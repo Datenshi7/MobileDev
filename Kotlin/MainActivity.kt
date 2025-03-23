@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White), // Light Green
+                .background(color = Color(0xFFFFF5E4)),
             contentAlignment = Alignment.Center
         ) {
 
@@ -94,7 +94,7 @@ class MainActivity : ComponentActivity() {
                     .padding(top = 48.dp),
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF2E8B57) // Sea Green
+                color = Color(0xFF850E35) //sort of maroon
             )
 
             // Login card
@@ -103,7 +103,7 @@ class MainActivity : ComponentActivity() {
                     .fillMaxWidth(0.9f)
                     .padding(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color(0xFF3CB371) // Medium Sea Green
+                    containerColor = Color(0xFFFFC4C4) //light pink
                 ),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 8.dp
@@ -122,12 +122,12 @@ class MainActivity : ComponentActivity() {
                         text = "Welcome Back",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = Color.DarkGray
                     )
 
                     Text(
                         text = "Please sign in to continue",
-                        color = Color(0xFFE0FFE0),
+                        color = Color.DarkGray,
                         fontSize = 16.sp
                     )
 
@@ -137,7 +137,7 @@ class MainActivity : ComponentActivity() {
                     Column {
                         Text(
                             text = "Username",
-                            color = Color.White,
+                            color = Color.DarkGray,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 4.dp),
@@ -156,10 +156,10 @@ class MainActivity : ComponentActivity() {
                             placeholder = { Text("Enter username") },
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color.LightGray,
+                                unfocusedContainerColor = Color.White,
                                 errorContainerColor = Color(0xFFFFA07A),
                                 focusedBorderColor = Color(0xFF2E8B57),
-                                unfocusedBorderColor = Color(0xFF90EE90)
+                                unfocusedBorderColor = Color(0xFFDD88CF)
                             ),
                             isError = !isUsernameValid,
                             keyboardOptions = KeyboardOptions(
@@ -187,7 +187,7 @@ class MainActivity : ComponentActivity() {
                     Column {
                         Text(
                             text = "Password",
-                            color = Color.White,
+                            color = Color.DarkGray,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 4.dp),
@@ -207,10 +207,10 @@ class MainActivity : ComponentActivity() {
                             visualTransformation = PasswordVisualTransformation(),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedContainerColor = Color(0xFF90EE90),
-                                unfocusedContainerColor = Color.LightGray,
+                                unfocusedContainerColor = Color.White,
                                 errorContainerColor = Color(0xFFFFA07A),
-                                focusedBorderColor = Color(0xFF2E8B57),
-                                unfocusedBorderColor = Color(0xFF90EE90)
+                                focusedBorderColor = Color(0xFFB2A5FF),
+                                unfocusedBorderColor = Color(0xFFDD88CF)
                             ),
                             isError = !isPasswordValid,
                             keyboardOptions = KeyboardOptions(
@@ -271,7 +271,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxWidth()
                             .height(48.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF2E8B57) // Sea Green
+                            containerColor = Color(0xFFEE6983)
                         ),
                         shape = RoundedCornerShape(24.dp),
                         elevation = ButtonDefaults.buttonElevation(
@@ -308,12 +308,12 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Text(
                             text = "Don't have an account? ",
-                            color = Color.White,
+                            color = Color.DarkGray,
                             fontSize = 14.sp
                         )
                         Text(
                             text = "Register",
-                            color = Color(0xFFFFFFFF),
+                            color = Color(0xFF850E35),
                             fontWeight = FontWeight.Bold,
                             textDecoration = TextDecoration.Underline,
                             fontSize = 14.sp,
@@ -330,7 +330,7 @@ class MainActivity : ComponentActivity() {
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 16.dp),
                 fontSize = 12.sp,
-                color = Color(0xFF2E8B57) // Sea Green
+                color = Color(0xFF850E35)
             )
         }
     }
