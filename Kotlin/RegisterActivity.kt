@@ -30,7 +30,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.baseconvert.ui.theme.BaseConvertTheme
+
 import kotlinx.coroutines.launch
 
 class RegisterActivity : ComponentActivity() {
@@ -41,14 +41,14 @@ class RegisterActivity : ComponentActivity() {
         databaseManager = DatabaseManager(this)
 
         setContent {
-            BaseConvertTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color(0xFF98FB98)
                 ) {
                     RegisterScreen()
                 }
-            }
+
         }
     }
 
@@ -408,7 +408,7 @@ class RegisterActivity : ComponentActivity() {
                             fontWeight = FontWeight.Bold,
                             textDecoration = TextDecoration.Underline,
                             fontSize = 14.sp,
-                            modifier = Modifier.clickable { finish() }
+                            modifier = Modifier.clickable { finish() } //terminate activity, back to log in page
                         )
                     }
                 }
@@ -481,7 +481,7 @@ class RegisterActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview() {
-    BaseConvertTheme {
+
         RegisterActivity().RegisterScreen()
-    }
+
 }
