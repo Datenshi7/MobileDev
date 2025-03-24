@@ -90,7 +90,7 @@ fun LandingPage(
     }
 
     Scaffold(
-        floatingActionButton = {
+        floatingActionButton = { //add new conversion
             FloatingActionButton(
                 onClick = { showConversionDialog = true },
                 containerColor = Pink,
@@ -121,7 +121,7 @@ fun LandingPage(
                         fontWeight = FontWeight.Bold,
                         color = Color.White
                     )
-                    IconButton(onClick = onSettingsClick) {
+                    IconButton(onClick = onSettingsClick) { //settings navigation
                         Icon(
                             Icons.Filled.Settings,
                             contentDescription = "Settings",
@@ -176,14 +176,14 @@ fun LandingPage(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    ActionCard(
+                    ActionCard( //history navigation
                         title = "Recent",
                         subtitle = "View history",
                         color = LightPink.copy(alpha = 0.4f),
                         onClick = { /* Navigate to history */ },
                         modifier = Modifier.weight(1f)
                     )
-                    ActionCard(
+                    ActionCard( //profile navigation
                         title = "Profile",
                         subtitle = "Your stats",
                         color = LightPink.copy(alpha = 0.4f),
