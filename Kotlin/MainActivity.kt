@@ -29,7 +29,6 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.baseconvert.ui.theme.BaseConvertTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -40,17 +39,17 @@ class MainActivity : ComponentActivity() {
         databaseManager = DatabaseManager(this) // Initialize the database manager
 
         setContent {
-            BaseConvertTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color(0xFF98FB98) // Pale Green
+                    color = Color(0xFF98FB98)
                 ) {
                     LoginScreen(
                         onRegisterClick = { navigateToRegisterScreen() },
                         onLoginSuccess = { username -> navigateToLandingPage(username) }
                     )
                 }
-            }
+
         }
     }
 
@@ -311,7 +310,7 @@ class MainActivity : ComponentActivity() {
                             color = Color.DarkGray,
                             fontSize = 14.sp
                         )
-                        Text(
+                        Text( //navigate to the register page
                             text = "Register",
                             color = Color(0xFF850E35),
                             fontWeight = FontWeight.Bold,
@@ -339,7 +338,7 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    BaseConvertTheme {
+
         MainActivity().LoginScreen({}, { _ -> })
-    }
+
 }
