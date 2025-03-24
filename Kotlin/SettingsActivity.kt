@@ -15,23 +15,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.baseconvert.ui.theme.BaseConvertTheme
+
 
 class SettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BaseConvertTheme {
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     SettingsScreen(
                         navigateToPreviousPage = { finish() },
-                        navigateToDeveloperScreen = { navigateToDeveloperScreen() }
+                        navigateToDeveloperScreen = { navigateToDeveloperScreen() },
+                                navigateToSignInScreen = { navigateToSignInScreen() }
                     )
                 }
-            }
+
         }
     }
 
@@ -39,12 +40,19 @@ class SettingsActivity : ComponentActivity() {
         val intent = Intent(this, DeveloperActivity::class.java)
         startActivity(intent)
     }
+
+    private fun navigateToSignInScreen() {
+        val intent = Intent(this, RegisterActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clears back stack
+        startActivity(intent)
+    }
 }
 
 @Composable
 fun SettingsScreen(
     navigateToPreviousPage: () -> Unit,
-    navigateToDeveloperScreen: () -> Unit
+    navigateToDeveloperScreen: () -> Unit,
+    navigateToSignInScreen: () -> Unit
 ) {
     var isDarkThemeEnabled by remember { mutableStateOf(false) }
     var isNotificationsEnabled by remember { mutableStateOf(true) }
@@ -180,7 +188,9 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { /* Log out action */ }
+                        .clickable { /* Log out action */
+                            navigateToSignInScreen()  }
+
                         .padding(vertical = 8.dp)
                 )
             }
@@ -192,7 +202,7 @@ fun SettingsScreen(
 @Preview(showBackground = true)
 @Composable
 fun SettingsScreenPreview() {
-    BaseConvertTheme {
-        SettingsScreen({}, {})
-    }
+
+        SettingsScreen({}, {}, {})
+
 }
