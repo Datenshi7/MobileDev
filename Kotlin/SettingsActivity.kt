@@ -16,29 +16,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 
+
 class SettingsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var isDarkThemeEnabled by remember { mutableStateOf(false) }
 
-            // Apply dark theme dynamically
-            MaterialTheme(
-                colorScheme = if (isDarkThemeEnabled) darkColorScheme() else lightColorScheme()
-            ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     SettingsScreen(
-                        isDarkThemeEnabled = isDarkThemeEnabled,
-                        onDarkThemeChange = { isDarkThemeEnabled = it },
                         navigateToPreviousPage = { finish() },
-                        navigateToDeveloperScreen = { navigateToDeveloperScreen() },
-                        navigateToSignInScreen = { navigateToSignInScreen() }
+                        navigateToDeveloperScreen = { navigateToDeveloperScreen() }
                     )
                 }
-            }
+
         }
     }
 
@@ -46,23 +39,14 @@ class SettingsActivity : ComponentActivity() {
         val intent = Intent(this, DeveloperActivity::class.java)
         startActivity(intent)
     }
-
-    private fun navigateToSignInScreen() {
-        val intent = Intent(this, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clears back stack
-        startActivity(intent)
-    }
 }
-
 
 @Composable
 fun SettingsScreen(
-    isDarkThemeEnabled: Boolean,
-    onDarkThemeChange: (Boolean) -> Unit,
     navigateToPreviousPage: () -> Unit,
-    navigateToDeveloperScreen: () -> Unit,
-    navigateToSignInScreen: () -> Unit
+    navigateToDeveloperScreen: () -> Unit
 ) {
+    var isDarkThemeEnabled by remember { mutableStateOf(false) }
     var isNotificationsEnabled by remember { mutableStateOf(true) }
     var fontSize by remember { mutableStateOf("Medium") }
 
@@ -150,7 +134,7 @@ fun SettingsScreen(
                     Text(text = "Dark Mode")
                     Switch(
                         checked = isDarkThemeEnabled,
-                        onCheckedChange = onDarkThemeChange // This will toggle the dark mode
+                        onCheckedChange = { isDarkThemeEnabled = it }
                     )
                 }
                 Row(
@@ -172,7 +156,7 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(vertical = 8.dp)
                 )
-                // Add search and legal options here
+                // magsearch pako unsay iadd diri nga part.
             }
 
             item {
@@ -196,7 +180,7 @@ fun SettingsScreen(
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { navigateToSignInScreen() }
+                        .clickable { /* Log out action */ }
                         .padding(vertical = 8.dp)
                 )
             }
@@ -205,15 +189,10 @@ fun SettingsScreen(
 }
 
 
-
 @Preview(showBackground = true)
 @Composable
 fun SettingsScreenPreview() {
-    SettingsScreen(
-        isDarkThemeEnabled = false, // Set this to a fixed value for the preview
-        onDarkThemeChange = { /* No action needed in preview */ },
-        navigateToPreviousPage = { /* No action needed in preview */ },
-        navigateToDeveloperScreen = { /* No action needed in preview */ },
-        navigateToSignInScreen = { /* No action needed in preview */ }
-    )
+
+        SettingsScreen({}, {})
+
 }
