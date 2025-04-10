@@ -33,22 +33,20 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private lateinit var databaseManager: DatabaseManager
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         databaseManager = DatabaseManager(this) // Initialize the database manager
-
         setContent {
 
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color(0xFF98FB98)
-                ) {
-                    LoginScreen(
-                        onRegisterClick = { navigateToRegisterScreen() },
-                        onLoginSuccess = { username -> navigateToLandingPage(username) }
-                    )
-                }
+            Surface(
+                modifier = Modifier.fillMaxSize(),
+                color = Color(0xFF98FB98)
+            ) {
+                LoginScreen(
+                    onRegisterClick = { navigateToRegisterScreen() },
+                    onLoginSuccess = { username -> navigateToLandingPage(username) }
+                )
+            }
 
         }
     }
@@ -339,6 +337,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun LoginScreenPreview() {
 
-        MainActivity().LoginScreen({}, { _ -> })
+    MainActivity().LoginScreen({}, { _ -> })
 
 }
