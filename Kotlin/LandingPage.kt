@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.example.baseconvert.ui.theme.BaseConvertTheme
 import java.util.*
 
 // Custom colors (unchanged)
@@ -40,7 +41,8 @@ class LandingPageActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            val isDarkThemeEnabled = true // Adjust this flag dynamically if needed
+            BaseConvertTheme(darkTheme = isDarkThemeEnabled) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -53,9 +55,12 @@ class LandingPageActivity : ComponentActivity() {
                         onBaseConvertClick = { navigateToBaseConverter() }
                     )
                 }
-
+            }
         }
     }
+
+
+
 
     private fun navigateToProfileScreen() {
         val intent = Intent(this, ProfileActivity::class.java)
