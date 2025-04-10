@@ -30,14 +30,16 @@ class ProfileActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BaseConvertTheme {
+            val isDarkThemeEnabled = true // Adjust this flag dynamically if needed
+            BaseConvertTheme(darkTheme = isDarkThemeEnabled) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color(0xFFFFC4C4)
+                    color = MaterialTheme.colorScheme.background // Adapt to theme background color
                 ) {
                     ProfileScreen(
                         onLogoutConfirmed = { navigateToLoginScreen() },
-                        onSettingsClick = { navigateToSettingsScreen() }
+                        onSettingsClick = { navigateToSettingsScreen() },
+                        onBackClick = { navigateToLandingPage() }
                     )
                 }
             }
@@ -54,10 +56,20 @@ class ProfileActivity : ComponentActivity() {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
+
+    private fun navigateToLandingPage() {
+        val intent = Intent(this, LandingPageActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
 
 @Composable
-fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
+fun ProfileScreen(
+    onLogoutConfirmed: () -> Unit,
+    onSettingsClick: () -> Unit,
+    onBackClick: () -> Unit // Added this parameter for the Back button
+) {
     var username by remember { mutableStateOf("john_doe") }
     var email by remember { mutableStateOf("john_doe@example.com") }
     var isEditing by remember { mutableStateOf(false) }
@@ -94,17 +106,31 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
             .background(Color(0xFFFFF5E4))
             .padding(16.dp)
     ) {
+        // Top row: Back arrow, username at center, and settings icon
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            // Back arrow
+            Image(
+                painter = painterResource(id = R.drawable.arrow_back),
+                contentDescription = "Back",
+                modifier = Modifier
+                    .size(24.dp)
+                    .clickable(onClick = { onBackClick() })
+            )
+
+            // Centered username
             Text(
                 text = username,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF850E35)
             )
+
+            // Settings icon
             Icon(
                 imageVector = Icons.Default.Settings,
                 contentDescription = "Settings",
@@ -135,7 +161,6 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
                 text = email,
                 style = MaterialTheme.typography.bodyLarge,
                 color = Color(0xFF850E35)
-
             )
         }
 
@@ -185,7 +210,9 @@ fun ProfileScreen(onLogoutConfirmed: () -> Unit, onSettingsClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
-    BaseConvertTheme {
-        ProfileScreen({}, {})
-    }
+    ProfileScreen(
+        onLogoutConfirmed = {},
+        onSettingsClick = {},
+        onBackClick = {}
+    )
 }
