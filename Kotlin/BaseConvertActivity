@@ -18,15 +18,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.lang.NumberFormatException
-
+import com.example.baseconvert.ui.theme.BaseConvertTheme
 
 class BaseConvertActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-                BaseConverterScreen(onBackClick = { finish() })
-
+            val isDarkThemeEnabled = true // Adjust this flag dynamically if needed
+            BaseConvertTheme(darkTheme = isDarkThemeEnabled) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background // Adapt to theme background color
+                ) {
+                    BaseConverterScreen(onBackClick = { finish() })
+                }
+            }
         }
     }
 }
