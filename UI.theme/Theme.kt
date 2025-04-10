@@ -3,7 +3,11 @@ package com.example.baseconvert.ui.theme
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
@@ -12,64 +16,44 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// Define the color schemes for Dark and Light modes
+// Define your custom dark and light color schemes
 private val DarkColorScheme = darkColorScheme(
-    primary = Color(0xFFBB86FC),
-    onPrimary = Color.Black,
-    secondary = Color(0xFF03DAC5),
-    onSecondary = Color.Black,
-    background = Color(0xFF121212),
+    primary = Purple80,
+    secondary = PurpleGrey80,
+    tertiary = Pink80,
+    background = Color(0xFF121212), // Custom dark background
+    surface = Color(0xFF1E1E1E),   // Custom dark surface color
+    onPrimary = Color.White,
+    onSecondary = Color.White,
+    onTertiary = Color.White,
     onBackground = Color.White,
-    surface = Color(0xFF121212),
-    onSurface = Color.White,
-    error = Color(0xFFCF6679),
-    onError = Color.Black
+    onSurface = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF6200EE),
+    primary = Purple40,
+    secondary = PurpleGrey40,
+    tertiary = Pink40,
+    background = Color(0xFFFFFFFF), // Custom light background
+    surface = Color(0xFFF5F5F5),   // Custom light surface color
     onPrimary = Color.White,
-    secondary = Color(0xFF03DAC5),
     onSecondary = Color.Black,
-    background = Color.White,
+    onTertiary = Color.Black,
     onBackground = Color.Black,
-    surface = Color.White,
-    onSurface = Color.Black,
-    error = Color(0xFFB00020),
-    onError = Color.White
+    onSurface = Color.Black
 )
 
-// Base theme composable
 @Composable
-fun BaseConvertTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
-) {
-    // Determine the color scheme based on the system theme and dynamic color
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+fun BaseConvertTheme(darkTheme: Boolean = false, content: @Composable () -> Unit) {
+    val colorScheme = if (darkTheme) {
+        darkColorScheme() // Define dark theme color palette
+    } else {
+        lightColorScheme() // Define light theme color palette
     }
 
-    // Set status bar color based on the theme
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-        }
-    }
-
-    // Apply the theme
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography, // Assuming Typography is defined somewhere in your code
+        typography = Typography, // Define your typography
         content = content
     )
 }
