@@ -16,29 +16,29 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.withStyle
-
+import com.example.baseconvert.ui.theme.BaseConvertTheme
 
 class DeveloperActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            val isDarkThemeEnabled = true // Change this flag dynamically based on your preferences
+            BaseConvertTheme(darkTheme = isDarkThemeEnabled) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color(0xFF58d68d),
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     DeveloperScreen()
                 }
-
+            }
         }
     }
 }
@@ -48,22 +48,22 @@ fun DeveloperScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color(0xFFFFF5E4)),
+            .background(color = MaterialTheme.colorScheme.background), // Adapt to theme
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Top area occupied with dark green
+        // Top area occupied with dynamic theme support
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color(0xFFEE6983))
+                .background(MaterialTheme.colorScheme.primary) // Theme-aware primary color
                 .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 text = "Meet the Team",
                 style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-                color = Color.White
+                color = MaterialTheme.colorScheme.onPrimary // Text color adapts to theme
             )
         }
 
@@ -93,7 +93,7 @@ fun DeveloperScreen() {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(16.dp))
-                .background(Color(0xFFEE6983)),
+                .background(MaterialTheme.colorScheme.secondary), // Theme-aware secondary color
             contentAlignment = Alignment.Center
         ) {
             Column(
@@ -103,13 +103,13 @@ fun DeveloperScreen() {
                 Text(
                     text = "Team Vision",
                     style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-                    color = Color.White
+                    color = MaterialTheme.colorScheme.onSecondary // Text color adapts to theme
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "\"Innovating the future, one step at a time\"",
                     style = MaterialTheme.typography.bodyLarge.copy(fontStyle = FontStyle.Italic),
-                    color = Color.White,
+                    color = MaterialTheme.colorScheme.onSecondary,
                     textAlign = TextAlign.Center
                 )
             }
@@ -119,10 +119,12 @@ fun DeveloperScreen() {
 
         Text(
             text = "Our team is dedicated to building innovative and user-friendly solutions that make a difference in people's lives. We believe in continuous learning, collaboration, and striving for excellence in everything we do.",
-            style = MaterialTheme.typography.bodyLarge, color = Color.DarkGray,
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onBackground, // Theme-aware text color
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(horizontal = 16.dp)
-                .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.4f))
         )
     }
 }
@@ -134,7 +136,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
             .fillMaxWidth()
             .padding(10.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
+            .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.4f)) // Theme-aware surface color
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -147,7 +149,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
                 modifier = Modifier
                     .size(100.dp)
                     .clip(CircleShape)
-                    .background(color = Color(0xFFFFC4C4)),
+                    .background(color = MaterialTheme.colorScheme.surface),
                 contentScale = ContentScale.Crop
             )
 
@@ -156,7 +158,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
             Text(
                 text = name,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-                color = Color(0xFF850E35)
+                color = MaterialTheme.colorScheme.primary // Adapt to theme primary color
             )
         }
 
@@ -168,7 +170,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
             Text(
                 text = bio,
                 style = MaterialTheme.typography.bodyLarge,
-                color = Color.DarkGray
+                color = MaterialTheme.colorScheme.onBackground // Theme-aware text color
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -179,7 +181,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
                     }
                 },
                 style = MaterialTheme.typography.bodyMedium,
-                color = Color.DarkGray
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
     }
@@ -188,7 +190,7 @@ fun TeamMember(profileImage: Int, name: String, bio: String, funFact: String) {
 @Preview(showBackground = true)
 @Composable
 fun DeveloperScreenPreview() {
-
+    BaseConvertTheme {
         DeveloperScreen()
-
+    }
 }
