@@ -38,8 +38,9 @@ class ProfileActivity : ComponentActivity() {
                 ) {
                     ProfileScreen(
                         onLogoutConfirmed = { navigateToLoginScreen() },
-                        onSettingsClick = { navigateToSettingsScreen() },
-                        onBackClick = { navigateToLandingPage() }
+                        onBackClick = { navigateToLandingPage() },
+                        onNotesClick = { navigateToNotesPage() },
+                        onHistoryClick = { navigateToHistoryPage() }
                     )
                 }
             }
@@ -52,13 +53,20 @@ class ProfileActivity : ComponentActivity() {
         finish()
     }
 
-    private fun navigateToSettingsScreen() {
-        val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun navigateToLandingPage() {
         val intent = Intent(this, LandingPageActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun navigateToHistoryPage(){
+        val intent = Intent(this, HistoryActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun navigateToNotesPage(){
+        val intent = Intent(this, NotesActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -67,8 +75,9 @@ class ProfileActivity : ComponentActivity() {
 @Composable
 fun ProfileScreen(
     onLogoutConfirmed: () -> Unit,
-    onSettingsClick: () -> Unit,
-    onBackClick: () -> Unit // Added this parameter for the Back button
+    onBackClick: () -> Unit,
+    onNotesClick: () -> Unit,
+    onHistoryClick: () -> Unit // Added this parameter for the Back button
 ) {
     var username by remember { mutableStateOf("john_doe") }
     var email by remember { mutableStateOf("john_doe@example.com") }
@@ -110,10 +119,9 @@ fun ProfileScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // Back arrow
+            // Back arrow icon on the left
             Image(
                 painter = painterResource(id = R.drawable.arrow_back),
                 contentDescription = "Back",
@@ -121,6 +129,9 @@ fun ProfileScreen(
                     .size(24.dp)
                     .clickable(onClick = { onBackClick() })
             )
+
+            // Spacer to push the username to the center
+            Spacer(modifier = Modifier.weight(1f))
 
             // Centered username
             Text(
@@ -130,14 +141,8 @@ fun ProfileScreen(
                 color = Color(0xFF850E35)
             )
 
-            // Settings icon
-            Icon(
-                imageVector = Icons.Default.Settings,
-                contentDescription = "Settings",
-                modifier = Modifier
-                    .size(24.dp)
-                    .clickable { onSettingsClick() }
-            )
+            // Spacer to ensure proper layout balancing
+            Spacer(modifier = Modifier.weight(1f))
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -185,7 +190,7 @@ fun ProfileScreen(
                 .height(80.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
-                .clickable { /* Handle Notes click */ },
+                .clickable(onClick = { onNotesClick() }),
             contentAlignment = Alignment.Center
         ) {
             Text(text = "Notes", style = MaterialTheme.typography.bodyLarge, color = Color.DarkGray)
@@ -199,7 +204,7 @@ fun ProfileScreen(
                 .height(80.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(Color(0xFFFFC4C4).copy(alpha = 0.4f))
-                .clickable { /* Handle History click */ },
+                .clickable(onClick = { onHistoryClick() }),
             contentAlignment = Alignment.Center
         ) {
             Text(text = "History", style = MaterialTheme.typography.bodyLarge, color = Color.DarkGray)
@@ -212,7 +217,8 @@ fun ProfileScreen(
 fun ProfileScreenPreview() {
     ProfileScreen(
         onLogoutConfirmed = {},
-        onSettingsClick = {},
-        onBackClick = {}
+        onBackClick = {},
+        onNotesClick = {},
+        onHistoryClick = {}
     )
 }
