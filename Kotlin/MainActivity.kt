@@ -15,7 +15,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
@@ -35,7 +34,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var databaseManager: DatabaseManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        databaseManager = DatabaseManager(this) // Initialize the database manager
+        databaseManager = DatabaseManager() // Initialize the database manager
         setContent {
 
             Surface(
