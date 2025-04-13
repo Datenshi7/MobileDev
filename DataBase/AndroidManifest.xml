@@ -10,14 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BaseConverter"
+        android:theme="@style/Theme.BaseConvert"
         tools:targetApi="31">
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.BaseConverter">
+            android:theme="@style/Theme.BaseConvert">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,37 +28,46 @@
             android:name=".RegisterActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.BaseConverter"/>
+            android:theme="@style/Theme.BaseConvert" />
 
         <activity
             android:name=".LandingPageActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.BaseConverter"/>
+            android:theme="@style/Theme.BaseConvert" />
 
         <activity
             android:name=".ProfileActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.BaseConverter"/>
+            android:theme="@style/Theme.BaseConvert" />
 
         <activity
             android:name=".SettingsActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.BaseConverter"/>
+            android:theme="@style/Theme.BaseConvert" />
 
         <activity
             android:name=".DeveloperActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.BaseConverter"/>
+            android:theme="@style/Theme.BaseConvert" />
 
+        <!-- Added NotesPage Activity -->
         <activity
-            android:name=".BaseConverterActivity"
+            android:name=".NotesActivity"
             android:exported="true"
-            android:label="BaseConvert"
-            android:theme="@style/Theme.BaseConverter"/>
+            android:label="@string/app_name"
+            android:theme="@style/Theme.BaseConvert" />
+
+        <!-- Added HistoryPage Activity -->
+        <activity
+            android:name=".HistoryActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.BaseConvert" />
+
     </application>
 
 </manifest>
